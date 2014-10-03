@@ -24,7 +24,7 @@ sudo apt-get update
 sudo apt-get install plexmediaserver
 
 # Add plexmediaserver to auto start
-sudo update-rc.d plexmediaserver start
+sudo update-rc.d plexmediaserver defaults
 
 # Remove trailing "/" for next commands
 path=${path%/}
