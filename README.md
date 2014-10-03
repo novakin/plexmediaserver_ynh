@@ -1,4 +1,4 @@
-Sickbeard_ynh
+PlexMediaServer_ynh
 =============
 
 Installs PlexMediaServer download manager for Yunohost.
