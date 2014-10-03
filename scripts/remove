@@ -3,9 +3,6 @@
 domain=$(sudo yunohost app setting plexmediaserver domain)
 
 sudo rm /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
-sudo rm -rf /etc/init.d/plexmediaserver
-
-sudo sudo update-rc.d -f plexmediaserver remove
 
 sudo apt-get remove plexmediaserver
 
