@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Retrieve arguments
+domain=$1
+path=$2
+port=$3
+
+sudo yunohost app checkurl $domain$path -a plexmediaserver
+if [[ ! $? -eq 0 ]]; then
+  exit 1
+fi
+
+# Set destination
+destination=/home/yunohost.plexmediaserver/
+
+# Make directories and set rights
+sudo mkdir -p $destination
+sudo chmod 755 -R $destination
+
+# Install plex
+sudo echo "deb http://shell.ninthgate.se/packages/debian squeeze main" >> /etc/apt/sources.list
+sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install plexmediaserver
+
+# Add plexmediaserver to auto start
+sudo update-rc.d plexmediaserver start
+
+# Remove trailing "/" for next commands
+path=${path%/}
+
+# Monitor service
+sudo yunohost service add plexmediaserver
+
+# Configure Nginx and generate SSOwat conf
+# sudo service sickbeard start
+sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
+sudo service nginx restart
+echo $?
+sudo yunohost app ssowatconf
