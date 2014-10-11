@@ -18,7 +18,7 @@ sudo mkdir -p $destination
 sudo chmod 755 -R $destination
 
 # Install plex
-sudo echo "deb http://shell.ninthgate.se/packages/debian squeeze main" >> /etc/apt/sources.list
+sudo sh -c "echo 'deb http://shell.ninthgate.se/packages/debian squeeze main' >> /etc/apt/sources.list"
 sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install plexmediaserver
