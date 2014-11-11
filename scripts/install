@@ -26,12 +26,12 @@ sudo apt-get install plexmediaserver
 # Add plexmediaserver to auto start
 sudo update-rc.d plexmediaserver defaults
 
-//locate plex files in /home/yunoshost.app/plexmediaserver
-sudo service plexmediaser stop
+# locate plex files in /home/yunoshost.app/plexmediaserver
+sudo service plexmediaserver stop
 sudo mv /var/lib/plexmediaserver /home/yunohost.app/
 sudo ln -s /home/yunohost.app/plexmediaserver /var/lib/plexmediaserver
 sudo chown -R plex /var/lib/plexmediaserver
-sudo service plexmediaser start
+sudo service plexmediaserver start
 
 # Remove trailing "/" for next commands
 path=${path%/}
