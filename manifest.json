@@ -24,8 +24,8 @@
         "ask": {
           "en": "Choose a path for PlexMediaServer"
         },
-        "example": "/plexmediaserver",
-        "default": "/plexmediaserver"
+        "example": "/",
+        "default": "/"
       }
     ]
   }
