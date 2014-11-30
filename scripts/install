@@ -3,7 +3,6 @@
 # Retrieve arguments
 domain=$1
 path=$2
-port=$3
 
 sudo yunohost app checkurl $domain$path -a plexmediaserver
 if [[ ! $? -eq 0 ]]; then
