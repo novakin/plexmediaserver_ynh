@@ -6,7 +6,7 @@ sudo yunohost firewall disallow TCP 32400
 
 sudo rm /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
 
-sudo service stop plexmediaserver
+sudo service plexmediaserver stop
 sudo apt-get remove -y plexmediaserver
 sudo apt-get -y autoremove
 
