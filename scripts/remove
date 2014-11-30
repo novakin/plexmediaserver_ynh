@@ -12,7 +12,7 @@ sudo rm /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
 sudo service plexmediaserver stop
 sudo apt-get remove -y plexmediaserver
 sudo apt-get -y autoremove
-sudo update-rc.d plexmediaserver remove%
+sudo update-rc.d plexmediaserver remove
 
 sudo service nginx reload
 sudo yunohost app ssowatconf
