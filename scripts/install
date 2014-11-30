@@ -10,28 +10,28 @@ if [[ ! $? -eq 0 ]]; then
   exit 1
 fi
 
-# Set destination
-destination=/home/yunohost.plexmediaserver/
+# Check port availability
+sudo yunohost app checkport 32400
+if [[ ! $? -eq 0 ]]; then
+  exit 1
+fi
 
-# Make directories and set rights
-sudo mkdir -p $destination
-sudo chmod 755 -R $destination
+# Open port in firewall
+sudo yunohost firewall allow TCP 32400 > /dev/null 2>&1
 
 # Install plex
-sudo sh -c "echo 'deb http://shell.ninthgate.se/packages/debian squeeze main' >> /etc/apt/sources.list"
+sudo sh -c 'echo "deb http://shell.ninthgate.se/packages/debian wheezy main" >> /etc/apt/sources.list.d/plexmediaserver.list'
 sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install plexmediaserver
 
-# Add plexmediaserver to auto start
-sudo update-rc.d plexmediaserver defaults
-
 //locate plex files in /home/yunoshost.app/plexmediaserver
-sudo service plexmediaser stop
-sudo mv /var/lib/plexmediaserver /home/yunohost.app/
-sudo ln -s /home/yunohost.app/plexmediaserver /var/lib/plexmediaserver
-sudo chown -R plex /var/lib/plexmediaserver
-sudo service plexmediaser start
+sudo service plexmediaserver stop
+sudo ln -s /var/lib/plexmediaserver /home/yunohost.app/plexmediaserver 
+sudo service plexmediaserver start
+
+# enable auto start
+update-rc.d plexmediaserver defaults
 
 # Remove trailing "/" for next commands
 path=${path%/}
@@ -39,10 +39,13 @@ path=${path%/}
 # Monitor service
 sudo yunohost service add plexmediaserver
 
+# Disable SSO 
+sudo yunohost app setting plexmediaserver skipped_uris -v "/"
+
+
 # Configure Nginx and generate SSOwat conf
-# sudo service sickbeard start
 sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
-sudo service nginx restart
+sudo service nginx reload
 echo $?
 sudo yunohost app ssowatconf
