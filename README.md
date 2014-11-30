@@ -20,4 +20,4 @@ Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
 
 - Use **Install software** option from admin panel
 - Find textbox tagged as **Install from github**
-- Copy and paste: https://github.com/Chao-Man/plexmediaserver_ynh
+- Copy and paste: https://github.com/Novakin/plexmediaserver_ynh
