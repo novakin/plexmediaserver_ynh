@@ -5,6 +5,7 @@ domain=$(sudo yunohost app setting plexmediaserver domain)
 sudo rm /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
 
 sudo apt-get remove plexmediaserver
+sudo apt-get autoremove
 
 sudo service nginx reload
 sudo yunohost app ssowatconf
