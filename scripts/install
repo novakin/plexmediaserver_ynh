@@ -46,5 +46,7 @@ sudo yunohost app setting plexmediaserver skipped_uris -v "/"
 sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
 sudo service nginx reload
+sudo chown root: $nginxconf
+sudo chmod 600 $nginxconf
 echo $?
 sudo yunohost app ssowatconf
