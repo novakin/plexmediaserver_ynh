@@ -10,6 +10,7 @@ Plex's front-end media player, Plex Home Theater (formerly Plex Media Center[6])
 
 Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
 
+
 ## Licensing
 
 Plex Media Server, unlike the open source frontend, is proprietary software.
@@ -23,6 +24,14 @@ Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
 - Copy and paste: https://github.com/Novakin/plexmediaserver_ynh 
 
 
+## Domain configuration
+
+Choose one of your domain or subdomain, but **do not modify the path variable**. 
+
+&nbsp;&nbsp;
+<img src='http://img4.hostingpics.net/pics/519450pmsyunohostlocal.png'>
+
+
 ## Plex Configuration
 
 First of all you need to configure plex so you will be able to access your librairies from outside
@@ -33,7 +42,3 @@ First of all you need to configure plex so you will be able to access your libra
 - Go to connect and use your plex account credentials
 - Once you are connected make sure your server is mapped to port 32400 
 
-
-## Be careful
-
-This package is currently only working if you install it on subdomain root
