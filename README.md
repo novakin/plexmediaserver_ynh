@@ -26,7 +26,7 @@ Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
 
 ## Domain configuration
 
-Choose one of your domain or subdomain, but **do not modify the path variable**. 
+Choose one of your domain or subdomain, but **do not modify the path variable. (DO NOT CHOOSE YOUR DEFAULT DOMAIN)**
 
 &nbsp;&nbsp;
 <img src='http://img4.hostingpics.net/pics/519450pmsyunohostlocal.png'>
