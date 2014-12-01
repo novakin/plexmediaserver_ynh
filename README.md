@@ -16,12 +16,23 @@ Plex Media Server, unlike the open source frontend, is proprietary software.
 
 Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
 
-## Instructions
+## Instructions for install
 
 - Use **Install software** option from admin panel
 - Find textbox tagged as **Install from github**
-- Copy and paste: https://github.com/Novakin/plexmediaserver_ynh
- 
+- Copy and paste: https://github.com/Novakin/plexmediaserver_ynh 
+
+
+## Plex Configuration
+
+First of all you need to configure plex so you will be able to access your librairies from outside
+
+- Access your server via its local ip : http://YOURIP:32400/web/index.html
+- Go to settings (top-right corner icon) > Server tab 
+- Click on show advanced
+- Go to connect and use your plex account credentials
+- Once you are connected make sure your server is mapped to port 32400 
+
 
 ## Be careful
 
