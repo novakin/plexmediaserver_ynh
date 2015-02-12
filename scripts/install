@@ -33,7 +33,8 @@ sudo ln -s /var/lib/plexmediaserver /home/yunohost.app/plexmediaserver
 sudo service plexmediaserver start
 
 # enable auto start
-update-rc.d plexmediaserver defaults
+sudo chmod +x /etc/init.d/plexmediaserver
+sudo update-rc.d plexmediaserver defaults
 
 # Monitor service
 sudo yunohost service add plexmediaserver
