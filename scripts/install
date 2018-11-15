@@ -83,7 +83,7 @@ ynh_app_setting_set $app port $port
 # INSTALL POSTGRES
 #==============================================
 
-ynh_install_app_dependencies postgresql redis-server
+#ynh_install_app_dependencies postgresql redis-server
 
 #===============================================
 # ADD PLEX REPOSITORY
@@ -103,7 +103,7 @@ wget --no-verbose https://downloads.plex.tv/plex-media-server/1.13.9.5456-ecd600
 dpkg --install plexmediaserver_1.13.9.5456-ecd600442_amd64.deb
 
 #Work in commit : add yes
-#sudo apt-get install -y onlyoffice-documentserver
+#sudo apt-get install -y plexmediaserver
 
 #=================================================
 # NGINX CONFIGURATION
