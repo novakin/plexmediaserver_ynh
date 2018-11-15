@@ -22,7 +22,7 @@ path=${path%/}
 sudo yunohost firewall allow TCP 32400 > /dev/null 2>&1
 
 # Install plex
-sudo sh -c 'echo "deb http://shell.ninthgate.se/packages/debian wheezy main" >> /etc/apt/sources.list.d/plexmediaserver.list'
+sudo sh -c 'echo "deb http://shell.ninthgate.se/packages/debian strech main" >> /etc/apt/sources.list.d/plexmediaserver.list'
 sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install -y plexmediaserver
