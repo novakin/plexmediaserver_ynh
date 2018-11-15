@@ -97,8 +97,8 @@ ynh_install_app_dependencies postgresql redis-server
 # INSTALL PLEX
 #==============================================
 
-ynh_package_install_from_equivs ../conf/fakenode-deps.control
-ynh_package_install_from_equivs ../conf/fakepostgres-deps.control
+#ynh_package_install_from_equivs ../conf/fakenode-deps.control
+#ynh_package_install_from_equivs ../conf/fakepostgres-deps.control
 wget --no-verbose https://downloads.plex.tv/plex-media-server/1.13.9.5456-ecd600442/plexmediaserver_1.13.9.5456-ecd600442_amd64.deb
 dpkg --install plexmediaserver_1.13.9.5456-ecd600442_amd64.deb
 
@@ -135,7 +135,7 @@ ynh_system_user_create $app
 ### you can make a backup of this file before modifying it again if the admin had modified it.
 
 # Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "/etc/onlyoffice/documentserver/nginx/onlyoffice-documentserver.conf"
+#ynh_store_file_checksum "/etc/onlyoffice/documentserver/nginx/onlyoffice-documentserver.conf"
 
 
 #=================================================
