@@ -1,0 +1,6 @@
+SOURCE_URL=https://downloads.plex.tv/plex-media-server/1.13.9.5456-ecd600442/plexmediaserver_1.13.9.5456-ecd600442_amd64.deb
+SOURCE_SUM=daf9c008d495d5771c9eb3c6ec9c59fb4be4335d37558ec0448b6338515772dc
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=deb
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=

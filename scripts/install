@@ -98,10 +98,6 @@ ynh_system_user_create $app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-
-# Create a dedicated php-fpm config
-ynh_add_fpm_config
-
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
