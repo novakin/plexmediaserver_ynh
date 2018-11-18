@@ -26,6 +26,7 @@ ynh_abort_if_errors
 
 # Retrieve arguments
 domain=$YNH_APP_ARG_DOMAIN
+path_url=$YNH_APP_ARG_PATH
 #port=$YNH_APP_ARG_PORT
 
 ### If it's a multi-instance app, meaning it can be installed several times independently
@@ -50,18 +51,19 @@ final_path=/opt/yunohost/$app
 test ! -e "$final_path" || ynh_die "This path already contains a folder"
 
 # Normalize the url path syntax
-path_url=$(ynh_normalize_url_path /)
+path_url=$(ynh_normalize_url_path $path_url)
 
 # Check web path availability
-ynh_webpath_available $domain /
+ynh_webpath_available $domain $path_url
 # Register (book) web path
-ynh_webpath_register $app $domain /
+ynh_webpath_register $app $domain $path_url
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 
 ynh_app_setting_set $app domain $domain
+ynh_app_setting_set $app path $path_url
 #ynh_app_setting_set $app port $port
 
 #=================================================
@@ -79,12 +81,6 @@ port=$(ynh_find_port 32400)
 yunohost firewall allow --no-upnp TCP $port 2>&1
 ynh_app_setting_set $app port $port
 
-#==============================================
-# INSTALL POSTGRES
-#==============================================
-
-#ynh_install_app_dependencies postgresql redis-server
-
 #===============================================
 # ADD PLEX REPOSITORY
 #===============================================
@@ -97,13 +93,8 @@ ynh_app_setting_set $app port $port
 # INSTALL PLEX
 #==============================================
 
-#ynh_package_install_from_equivs ../conf/fakenode-deps.control
-#ynh_package_install_from_equivs ../conf/fakepostgres-deps.control
 wget --no-verbose https://downloads.plex.tv/plex-media-server/1.13.9.5456-ecd600442/plexmediaserver_1.13.9.5456-ecd600442_amd64.deb
 dpkg --install plexmediaserver_1.13.9.5456-ecd600442_amd64.deb
-
-#Work in commit : add yes
-#sudo apt-get install -y plexmediaserver
 
 #=================================================
 # NGINX CONFIGURATION
