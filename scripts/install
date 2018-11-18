@@ -27,7 +27,7 @@ ynh_abort_if_errors
 # Retrieve arguments
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
-#port=$YNH_APP_ARG_PORT
+is_public=$YNH_APP_ARG_IS_PUBLIC
 
 ### If it's a multi-instance app, meaning it can be installed several times independently
 ### The id of the app as stated in the manifest is available as $YNH_APP_ID
@@ -64,7 +64,7 @@ ynh_webpath_register $app $domain $path_url
 
 ynh_app_setting_set $app domain $domain
 ynh_app_setting_set $app path $path_url
-#ynh_app_setting_set $app port $port
+ynh_app_setting_set $app is_public $is_public
 
 #=================================================
 # FIND AND OPEN A PORT
@@ -80,14 +80,6 @@ port=$(ynh_find_port 32400)
 # Open this port
 yunohost firewall allow --no-upnp TCP $port 2>&1
 ynh_app_setting_set $app port $port
-
-#===============================================
-# ADD PLEX REPOSITORY
-#===============================================
-
-#echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
-#curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
-#ynh_package_update
 
 #==============================================
 # INSTALL PLEX
@@ -148,7 +140,11 @@ ynh_system_user_create $app
 #=================================================
 
 # unprotected_uris allows SSO credentials to be passed anyway.
-ynh_app_setting_set $app unprotected_uris "/"
+# If app is public, add url to SSOWat conf as skipped_uris
+if [ $is_public -eq 1 ]; then
+  # unprotected_uris allows SSO credentials to be passed anyway.
+  ynh_app_setting_set "$app" unprotected_uris "/"
+fi
 
 # Reload services
 systemctl restart nginx
