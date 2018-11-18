@@ -66,7 +66,7 @@ fi
 ynh_secure_remove "/etc/cron.d/$app"
 
 # Remove a directory securely
-ynh_secure_remove "/etc/apt/sources.list.d/onlyoffice.list"
+#ynh_secure_remove "/etc/apt/sources.list.d/onlyoffice.list"
 
 
 # Remove the log files
