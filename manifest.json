@@ -1,6 +1,6 @@
 {
     "name": "PlexMediaServer",
-    "id": "PlexMediaServer",
+    "id": "plexmediaserver",
     "packaging_format": 1,
     "description": {
         "en": "PlexMediaServer package for YunoHost.",
