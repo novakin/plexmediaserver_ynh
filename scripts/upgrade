@@ -5,10 +5,10 @@ set -eu
 
 # See comments in install script
 app=$YNH_APP_INSTANCE_NAME
+final_path=/opt/yunohost/$app
 
 # Source YunoHost helpers
 source /usr/share/yunohost/helpers
-source _common.sh
 
 # Set permissions to app files
 # you may need to make some file and/or directory writeable by www-data (nginx user)

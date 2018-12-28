@@ -28,5 +28,5 @@ Plex Media Server
  
 ### Upgrade this package:
 
-        $ sudo yunohost app upgrade --verbose example -u https://github.com/YunoHost-Apps/plexmediaserver_ynh
+        $ sudo yunohost app upgrade --debug plexmediaserver -u https://github.com/YunoHost-Apps/plexmediaserver_ynh
 
