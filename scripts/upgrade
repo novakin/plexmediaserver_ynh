@@ -10,38 +10,39 @@ app=$YNH_APP_INSTANCE_NAME
 source /usr/share/yunohost/helpers
 source _common.sh
 
-# Retrieve app settings
-domain=$(ynh_app_setting_get "$app" domain)
-password=$(ynh_app_setting_get "$app" password)
-is_public=$(ynh_app_setting_get "$app" is_public)
-nextclouddomain=$(ynh_app_setting_get "$app" nextclouddomain)
-
-
 # Set permissions to app files
 # you may need to make some file and/or directory writeable by www-data (nginx user)
-sudo chown -R root: $src_path
+#sudo chown -R root: $src_path
 
 #=================================================
-# UPGRADE COLLABORA
+# DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_package_update
-ynh_install_app_dependencies loolwsd code-brand
+
+ynh_app_setting_set $app final_path $final_path
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source "$final_path"
+
+#==============================================
+# INSTALL PLEX
+#==============================================
+
+dpkg --install $final_path/plexmediaserver*
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
 
 # Create a dedicated nginx config
-ynh_add_nginx_config
+#ynh_add_nginx_config
 
 
 #=================================================
 # UPGRADE CONFIG
 #=================================================
-cp -a ../conf/loolwsd.xml /etc/loolwsd
-ynh_replace_string "__NEXTCLOUDDOMAIN__" "$nextcloud_domain" "/etc/loolwsd/loolwsd.xml"
-ynh_replace_string "__PASSWORD__" "$password" "/etc/loolwsd/loolwsd.xml"
-systemctl restart loolwsd
+#cp -a ../conf/loolwsd.xml /etc/loolwsd
+#ynh_replace_string "__NEXTCLOUDDOMAIN__" "$nextcloud_domain" "/etc/loolwsd/loolwsd.xml"
+#ynh_replace_string "__PASSWORD__" "$password" "/etc/loolwsd/loolwsd.xml"
+#systemctl restart loolwsd
 
 
 
@@ -52,6 +53,5 @@ if [[ $is_public -eq 1 ]]; then
 fi
 
 # Reload nginx service
-systemctl restart nginx
-systemctl restart loolwsd
+systemctl restart plexmediaserver
 
