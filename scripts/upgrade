@@ -47,10 +47,10 @@ dpkg --install $final_path/plexmediaserver*
 
 
 # If app is public, add url to SSOWat conf as skipped_uris
-if [[ $is_public -eq 1 ]]; then
+#if [[ $is_public -eq 1 ]]; then
   # See install script
-  ynh_app_setting_set "$app" unprotected_uris "/"
-fi
+#  ynh_app_setting_set "$app" unprotected_uris "/"
+#fi
 
 # Reload nginx service
 systemctl restart plexmediaserver
