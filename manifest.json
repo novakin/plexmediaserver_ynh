@@ -6,8 +6,8 @@
         "en": "PlexMediaServer package for YunoHost.",
         "fr": "PlexMediaServer pour YunoHost."
     },
-    "url": "https://",
-    "license": "free",
+    "url": "http://plex.tv/",
+    "license": "non-free",
     "maintainer": {
         "name": "liberodark",
         "email": "liberodark@gmail.com",
