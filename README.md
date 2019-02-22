@@ -15,9 +15,8 @@ Plex Media Server
  1. App can be installed by YunoHost **admin web-interface** or by **running following command**:
 
          $ sudo yunohost app install https://github.com/YunoHost-Apps/plexmediaserver_ynh
- 1. Admin username is : **root**.
  
- OS X or Linux
+ After install :
 
    1. Open a Terminal window or your command prompt
    2. Enter the following command (substituting the IP address of your server as appropriate):
