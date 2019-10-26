@@ -1,14 +1,55 @@
 #!/bin/bash
 
-# Retrieve arguments
-domain=$(sudo yunohost app setting plexmediaserver domain)
-path=$(sudo yunohost app setting plexmediaserver path)
+# Exit on command errors and treat unset variables as an error
+set -eu
 
-# Remove trailing "/" for next commands
-path=${path%/}
+# See comments in install script
+app=$YNH_APP_INSTANCE_NAME
+final_path=/opt/yunohost/$app
 
-# Configure Nginx and reload
-sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
-sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/plexmediaserver.conf
-sudo service nginx reload
+# Source YunoHost helpers
+source /usr/share/yunohost/helpers
 
+# Stop plexmediaserver service
+systemctl stop plexmediaserver
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+
+ynh_app_setting_set $app final_path $final_path
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source "$final_path"
+
+#==============================================
+# INSTALL PLEX
+#==============================================
+
+dpkg --install $final_path/plexmediaserver*
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+
+# Create a dedicated nginx config
+#ynh_add_nginx_config
+
+
+#=================================================
+# UPGRADE CONFIG
+#=================================================
+#cp -a ../conf/loolwsd.xml /etc/loolwsd
+#ynh_replace_string "__NEXTCLOUDDOMAIN__" "$nextcloud_domain" "/etc/loolwsd/loolwsd.xml"
+#ynh_replace_string "__PASSWORD__" "$password" "/etc/loolwsd/loolwsd.xml"
+#systemctl restart loolwsd
+
+
+
+# If app is public, add url to SSOWat conf as skipped_uris
+#if [[ $is_public -eq 1 ]]; then
+  # See install script
+#  ynh_app_setting_set "$app" unprotected_uris "/"
+#fi
+
+# Start plexmediaserver service
+systemctl start plexmediaserver

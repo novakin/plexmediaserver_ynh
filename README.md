@@ -1,44 +1,34 @@
-plexmediaserver_ynh
-=============
+# Plex app for YunoHost
+Plex Media Server
 
-PlexMediaServer for Yunohost.
+Shipped version: 1.18.0.1944
 
-## Description
-Plex organizes video, music and photos from personal media libraries and streams them to smart TVs, streaming boxes and mobile devices. It is a media player system and software suite consisting of many player applications for 10-foot user interfaces and an associated media server that organizes personal media stored on local devices. It is available for Mac OS X, Linux, and Microsoft Windows.[1] Plex also offers streaming apps for Roku and Chromecast.[2] Integrated Plex Channels provide users with access to a growing number of online content providers such as YouTube, Vimeo, TEDTalks, and CNN among others.[3] Plex also provides integration for cloud services[4] including Dropbox, Box, Google Drive, Copy and Bitcasa.[5]
+- [Yunohost project](https://yunohost.org)
+- [Plex website](https://plex.tv/)
 
-Plex's front-end media player, Plex Home Theater (formerly Plex Media Center[6]), allows the user to manage and play video, photos, music, and podcasts from a local or remote computer running Plex Media Server. In addition, the integrated Plex Online service provides the user with a growing list of community-driven plugins for online content including Hulu, Netflix, and CNN video.[7]
-
-Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
+![](https://nyro.ovh/wp-content/uploads/2017/12/plex_wallpaper_011-1040x585.jpg)
 
 
-## Licensing
+[![Integration level](https://dash.yunohost.org/integration/plexmediaserver.svg)](https://dash.yunohost.org/appci/app/plexmediaserver)  
+[![Install plexmediaserver with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=plexmediaserver)
 
-Plex Media Server, unlike the open source frontend, is proprietary software.
+### Installing guide
 
-Source: [Wikipedia](http://en.wikipedia.org/wiki/Plex_(software))
+ 1. App can be installed by YunoHost **admin web-interface** or by **running following command**:
 
-## Instructions for install
+         $ sudo yunohost app install https://github.com/YunoHost-Apps/plexmediaserver_ynh
+ 
+ After install :
 
-- Use **Install software** option from admin panel
-- Find textbox tagged as **Install from github**
-- Copy and paste: https://github.com/Novakin/plexmediaserver_ynh 
+   1. Open a Terminal window or your command prompt
+   2. Enter the following command (substituting the IP address of your server as appropriate) :
+   $ ssh admin@ip.address.of.server -L 8888:localhost:32400
+   3. Open a browser window
+   4. Type http://localhost:8888/web into the address bar
+   5. The browser will connect to the server as if it were local and load Plex Web App
 
+ 
+### Upgrade this package:
 
-## Domain configuration
-
-Choose one of your domain or subdomain, but **do not modify the path variable. (DO NOT CHOOSE YOUR DEFAULT DOMAIN)**
-
-&nbsp;&nbsp;
-<img src='http://img4.hostingpics.net/pics/519450pmsyunohostlocal.png'>
-
-
-## Plex Configuration
-
-First of all you need to configure plex so you will be able to access your librairies from outside
-
-- Access your server via its local ip : http://YOURIP:32400/web/index.html
-- Go to settings (top-right corner icon) > Server tab 
-- Click on show advanced
-- Go to connect and use your plex account credentials
-- Once you are connected make sure your server is mapped to port 32400 
+        $ sudo yunohost app upgrade plexmediaserver -u https://github.com/YunoHost-Apps/plexmediaserver_ynh
 
